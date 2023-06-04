@@ -2,7 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 template <typename T>
-class BSTree {
+class BST {
  private:
     struct Node {
         T value;
@@ -17,7 +17,7 @@ class BSTree {
     int searchNode(Node*, const T&);
 
  public:
-    BSTree() {
+    BST() {
         root = nullptr;
     }
     void add(const T&);
@@ -26,7 +26,7 @@ class BSTree {
 };
 
 template <typename T>
-typename BSTree<T>::Node* BSTree<T>:: addNode(Node* root, const T& value) {
+typename BST<T>::Node* BST<T>:: addNode(Node* root, const T& value) {
     if (root == nullptr) {
         root = new Node;
         root->value = value;
@@ -43,21 +43,21 @@ typename BSTree<T>::Node* BSTree<T>:: addNode(Node* root, const T& value) {
 }
 
 template<typename T>
-inline int BSTree<T>::heightTree(Node*) {
+inline int BST<T>::heightTree(Node* root) {
     if (root == nullptr) {
         return 0;
     } else {
         int leftHeight = heightTree(root->left);
         int rightHeight = heightTree(root->right);
         if (leftHeight >= rightHeight) {
-            return leftHeight;
+            return leftHeight + 1;
         }
-        return rightHeight;
+        return rightHeight + 1;
     }
 }
 
 template<typename T>
-inline int BSTree<T>::searchNode(Node* root, const T& value) {
+inline int BST<T>::searchNode(Node* root, const T& value) {
     if (root == nullptr) {
         return -1;
     } else if (root->value == value) {
@@ -70,17 +70,17 @@ inline int BSTree<T>::searchNode(Node* root, const T& value) {
 }
 
 template <typename T>
-void BSTree<T>::add(const T& value) {
+void BST<T>::add(const T& value) {
     root = addNode(root, value);
 }
 
 template<typename T>
-inline int BSTree<T>::height() {
-    return heightTree(root);
+inline int BST<T>::height() {
+    return heightTree(root) - 1;
 }
 
 template<typename T>
-inline int BSTree<T>::search(const T& value) {
+inline int BST<T>::search(const T& value) {
     return searchNode(root, value);
 }
 #endif  // INCLUDE_BST_H_
