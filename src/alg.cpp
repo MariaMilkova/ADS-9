@@ -5,6 +5,29 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+bool isLetter(char symbol) {
+    if (symbol >= 'a' && symbol <= 'z')
+        return;
+}
+
+BSTree<std::string> makeTree(const char* filename) {
+    std::ifstream file(filename);
+    BSTree<std::string> tree;
+    std::string word;
+    char character;
+    if (!file) {
+        std::cout << "File error!" << std::endl;
+        return tree;
+    }
+    while (!file.eof()) {
+        character = file.get();
+        if (isLetter(character)) {
+            tolower(character);
+            word += character;
+        }
+        tree.add(word);
+        word.clear();
+    }
+    file.close();
+    return tree;
 }
