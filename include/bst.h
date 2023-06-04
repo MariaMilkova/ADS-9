@@ -7,7 +7,6 @@ class BST {
     struct Node {
         T value;
         int count;
-        int depth;
         Node* left;
         Node* right;
     };
@@ -21,7 +20,7 @@ class BST {
         root = nullptr;
     }
     void add(const T&);
-    int height();
+    int depth();
     int search(const T&);
 };
 
