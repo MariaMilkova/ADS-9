@@ -67,6 +67,7 @@ inline int BST<T>::searchNode(Node* root, const T& value) {
     } else if (root->value < value) {
         return searchNode(root->right, value);
     }
+    return -1;
 }
 
 template <typename T>
@@ -75,7 +76,7 @@ void BST<T>::add(const T& value) {
 }
 
 template<typename T>
-inline int BST<T>::height() {
+inline int BST<T>::depth() {
     return heightTree(root) - 1;
 }
 
