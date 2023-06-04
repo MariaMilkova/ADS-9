@@ -28,7 +28,7 @@ class BSTree {
 template <typename T>
 typename BSTree<T>::Node* BSTree<T>:: addNode(Node* root, const T& value) {
     if (root == nullptr) {
-        root = new Node; 
+        root = new Node;
         root->value = value;
         root->count = 1;
         root->left = root->right = nullptr;
