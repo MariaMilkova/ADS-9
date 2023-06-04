@@ -6,8 +6,7 @@
 #include  "bst.h"
 
 bool isLetter(char symbol) {
-    if (symbol >= 'a' && symbol <= 'z')
-        return;
+    return symbol >= 'a' && symbol <= 'z';
 }
 
 BSTree<std::string> makeTree(const char* filename) {
@@ -22,7 +21,7 @@ BSTree<std::string> makeTree(const char* filename) {
     while (!file.eof()) {
         character = file.get();
         if (isLetter(character)) {
-            tolower(character);
+            character = tolower(character);
             word += character;
         }
         tree.add(word);
