@@ -9,9 +9,9 @@ bool isLetter(char symbol) {
     return symbol >= 'a' && symbol <= 'z';
 }
 
-BSTree<std::string> makeTree(const char* filename) {
+BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
-    BSTree<std::string> tree;
+    BST<std::string> tree;
     std::string word;
     char character;
     if (!file) {
@@ -19,13 +19,13 @@ BSTree<std::string> makeTree(const char* filename) {
         return tree;
     }
     while (!file.eof()) {
-        character = file.get();
+        character = tolower(file.get());
         if (isLetter(character)) {
-            character = tolower(character);
             word += character;
+        } else {
+            tree.add(word);
+            word.clear();
         }
-        tree.add(word);
-        word.clear();
     }
     file.close();
     return tree;
